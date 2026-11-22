@@ -1,0 +1,34 @@
+"use client";
+import { Award, BookOpen, Check, CheckCheck, Download, FileText, ImageDown, Link as LinkIcon, Share2, Sparkles } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import type { CompletionEvidence } from "@/lib/evidence-types";
+import { dataUrlToBlob, downloadBlob, elementToPng, nativeShare, pngToPdf, slug } from "@/lib/export";
+import { evidenceShareUrl } from "@/lib/evidence-share";
+import { ActionPopover, type MenuAnchor } from "./ActionPopover";
+export function EvidencePage({evidence:e}:{evidence:CompletionEvidence}) {
+  const ref=useRef<HTMLDivElement>(null);const [menu,setMenu]=useState(false);const [anchor,setAnchor]=useState<MenuAnchor>();const [busy,setBusy]=useState('');const [error,setError]=useState('');const [link,setLink]=useState('');const [copied,setCopied]=useState(false);
+  const close=useCallback(()=>setMenu(false),[]);const text=`I completed ${e.title} with Learn OTG. Here is my learning and completion evidence.`;
+  const run=async(label:string,fn:()=>Promise<void>)=>{setBusy(label);setError('');try{await fn();}catch(err){setError(err instanceof Error?err.message:'Try again.');}finally{setBusy('');}};
+  const capture=()=>{if(!ref.current)throw new Error('Evidence is not ready.');return elementToPng(ref.current);};
+  const open=async(el:HTMLElement)=>{setAnchor(el.getBoundingClientRect());setMenu(true);setLink('');setCopied(false);await run('Preparing',async()=>setLink(await evidenceShareUrl(e)));};
+  const shareText=encodeURIComponent(`${text}\n${link}`);const url=encodeURIComponent(link);
+  const networks=[['LinkedIn',`https://www.linkedin.com/sharing/share-offsite/?url=${url}`],['WhatsApp',`https://wa.me/?text=${shareText}`],['X',`https://twitter.com/intent/tweet?text=${shareText}`],['Teams',`https://teams.microsoft.com/share?href=${url}&msgText=${encodeURIComponent(text)}`],['Email',`mailto:?subject=${encodeURIComponent(e.title)}&body=${shareText}`],['Gmail',`https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(e.title)}&body=${shareText}`]];
+  return <div className="evidence-layout">
+    <div className="evidence-tools no-export"><span>Completion evidence</span><button className="btn btn-sm" disabled={!!busy} onClick={ev=>void open(ev.currentTarget)}><Share2 size={16}/>{busy?`${busy}…`:'Share evidence'}</button></div>
+    <div className="evidence-profile" ref={ref}>
+      <header className="evidence-hero"><div className="evidence-brand"><Sparkles size={16}/> Learn OTG <span>Learning record</span></div><div className="evidence-person"><span className="evidence-avatar" aria-hidden="true">{e.learner.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase()}</span><div><p>{e.learner}</p><small>Completed learning · {new Date(e.createdAt).toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'})}</small></div><CheckCheck size={24}/></div><h1>{e.title}</h1><p className="evidence-summary">{e.summary}</p></header>
+      <section className="evidence-metrics" aria-label="Recorded completion"><div><strong>{e.counts.lessons}</strong><span>Lessons completed</span></div><div><strong>{e.counts.quizzes}</strong><span>Quizzes taken</span></div><div><strong>{e.counts.scenarios}</strong><span>Scenarios completed</span></div><div><strong>{e.counts.activities}</strong><span>Activities answered</span></div></section>
+      <section className="evidence-section"><div className="evidence-section-heading"><Check size={18}/><h2>What I practiced</h2></div><div className="evidence-skills">{e.skills.map((skill,i)=><span key={i}>{skill}</span>)}</div></section>
+      <section className="evidence-section"><div className="evidence-section-heading"><BookOpen size={18}/><h2>Key lessons</h2></div><div className="evidence-lesson-grid">{e.lessons.map((lesson,i)=><article key={i}><small>{String(i+1).padStart(2,'0')}</small><h3>{lesson.title}</h3><p>{lesson.takeaway}</p></article>)}</div></section>
+      {e.scenarios.length>0&&<section className="evidence-section"><h2>Scenarios explored</h2><div className="evidence-scenarios">{e.scenarios.map((s,i)=><article key={i}><h3>{s.title}</h3><p>{s.description}</p></article>)}</div></section>}
+      <footer className="evidence-certification"><div className="evidence-section-heading"><Award size={22}/><h2>Certification</h2></div><p>{e.counts.courses > 0 ? `${e.counts.courses} course${e.counts.courses === 1 ? "" : "s"} · ` : ""}{e.counts.lessons} lessons completed · {e.counts.quizzes} quizzes taken · {e.counts.passed} passed</p>{e.certificates.length?e.certificates.map(c=><div className="evidence-credential" key={c.code}><strong>Certificate of completion</strong><p>{c.title}</p><small>{c.code} · Issued {new Date(c.issuedAt).toLocaleDateString()}</small></div>):<p>{e.lessonId?'Lesson completion recorded by Learn OTG.':'Course completion recorded by Learn OTG.'} {e.counts.passed} quiz checks passed.</p>}<p className="evidence-footnote">Based on recorded learning in Learn OTG. This is a completion record, not an independently assessed professional qualification.</p></footer>
+    </div>
+    {menu&&anchor&&<ActionPopover anchor={anchor} side="bottom" label="Share completion evidence" onClose={close} width={300}><div className="popover-heading">Share your learning</div>
+      {link&&<><button className="menu-item" onClick={()=>void run('Copying',async()=>{await navigator.clipboard.writeText(link);setCopied(true);})}>{copied?<Check size={17}/>:<LinkIcon size={17}/>} {copied?'Link copied':'Copy link'}</button><div className="share-network-grid">{networks.map(([label,href])=><a key={label} href={href} target="_blank" rel="noopener noreferrer" className="menu-item">{label}</a>)}</div>{location.hostname==='localhost'&&<p className="menu-note">This link needs an app address the recipient can reach. You can also share a downloaded image or PDF.</p>}</>}
+      <button className="menu-item menu-divider" disabled={!!busy} onClick={()=>void run('Sharing',async()=>{const png=await capture();const shared=await nativeShare({title:e.title,text:link?`${text}\n${link}`:text,png});if(shared===false)downloadBlob(dataUrlToBlob(png),`${slug(e.title)}-evidence.png`);})}><Share2 size={17}/>Share with an image</button>
+      <button className="menu-item" disabled={!!busy} onClick={()=>void run('Saving',async()=>{downloadBlob(dataUrlToBlob(await capture()),`${slug(e.title)}-evidence.png`);})}><ImageDown size={17}/>Save image</button>
+      <button className="menu-item" disabled={!!busy} onClick={()=>void run('Saving',async()=>{downloadBlob(await pngToPdf(await capture(),e.title),`${slug(e.title)}-evidence.pdf`);})}><FileText size={17}/>Save PDF</button>
+      {busy&&<p className="menu-status" role="status"><Download size={15}/>{busy}…</p>}{error&&<p className="form-error" role="alert">{error}</p>}
+    </ActionPopover>}
+  </div>;
+}

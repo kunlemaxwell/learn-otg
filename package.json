@@ -1,0 +1,50 @@
+{
+  "name": "learn-otg",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "predev": "node scripts/gen-spec.mjs",
+    "prebuild": "node scripts/gen-spec.mjs",
+    "dev:phone": "next dev -H 0.0.0.0",
+    "test:evidence": "node scripts/test-evidence.cjs",
+    "test:course": "node scripts/test-course-recovery.cjs"
+  },
+  "dependencies": {
+    "@openuidev/lang-core": "^0.3.2",
+    "@openuidev/react-lang": "^0.3.2",
+    "@openuidev/react-ui": "^0.17.0",
+    "@radix-ui/react-collapsible": "^1.1.21",
+    "html-to-image": "^1.11.13",
+    "jspdf": "^4.2.1",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.562.0",
+    "mammoth": "^1.13.0",
+    "next": "^16.3.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "server-only": "^0.0.1",
+    "unpdf": "^1.8.1",
+    "youtube-transcript-plus": "^2.0.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@openuidev/cli": "0.4.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.0",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "@openuidev/lang-core": true,
+    "sharp": true,
+    "unrs-resolver": true
+  },
+  "license": "MIT"
+}

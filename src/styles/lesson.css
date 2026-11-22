@@ -1,0 +1,502 @@
+/* Lesson components, from the Learn OTG design system. */
+
+/* Mood: every component reads --m (fill), --m-soft (tint), --m-on (text on fill), --m-text (text on paper). */
+:root,
+.otg-m-forest { --m: var(--forest); --m-soft: var(--forest-soft); --m-on: var(--on-forest); --m-text: var(--forest); }
+.otg-m-sun { --m: var(--sun); --m-soft: var(--sun-soft); --m-on: var(--on-sun); --m-text: var(--sun-ink); }
+.otg-m-lagoon { --m: var(--lagoon); --m-soft: var(--lagoon-soft); --m-on: var(--on-lagoon); --m-text: var(--lagoon); }
+.otg-m-berry { --m: var(--berry); --m-soft: var(--berry-soft); --m-on: var(--on-berry); --m-text: var(--berry); }
+.otg-m-clay { --m: var(--clay); --m-soft: var(--clay-soft); --m-on: var(--on-clay); --m-text: var(--clay); }
+.otg-m-graphite { --m: var(--graphite); --m-soft: var(--graphite-soft); --m-on: var(--on-graphite); --m-text: var(--graphite); }
+
+
+.otg-icon { flex: none; }
+.otg-eyebrow { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 11.5px; line-height: 16px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--m-text); }
+.otg-title { margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: 21px; line-height: 27px; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.otg-num { flex: none; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-pill); background: var(--m); color: var(--m-on); font-weight: 750; font-size: 13px; font-variant-numeric: tabular-nums; }
+:where(.otg-btn, .otg-chip, .otg-opt, .otg-flip, .otg-next-item, .otg-source, .otg-act summary):focus-visible,
+.otg-explore input:focus-visible, .otg-recall textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Buttons & chips */
+.otg-btn { display: inline-flex; align-items: center; gap: var(--space-2); font: inherit; font-weight: 650; font-size: 14px; height: 40px; padding: 0 18px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+.otg-btn:active { transform: scale(0.97); }
+.otg-btn--primary { background: var(--m); border-color: var(--m); color: var(--m-on); }
+.otg-btn--ghost { background: transparent; border-color: transparent; color: var(--m-text); padding: 0 var(--space-2); }
+.otg-chip { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13.5px; font-weight: 600; line-height: 18px; padding: 7px 13px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); }
+button.otg-chip { cursor: pointer; }
+.otg-chip.is-selected { background: var(--m); border-color: var(--m); color: var(--m-on); }
+
+/* Hero */
+.otg-hero { position: relative; display: grid; gap: var(--space-4); overflow: hidden; }
+.otg-hero-title { margin: 0; font-family: var(--font-display); text-wrap: balance; }
+.otg-hero-sub { margin: var(--space-2) 0 0; font-size: 17px; line-height: 25px; font-weight: 500; color: var(--ink-muted); max-width: 46ch; }
+.otg-hero-text { position: relative; display: grid; gap: var(--space-1); }
+.otg-hero--spotlight { padding: var(--space-6) var(--space-5); border-radius: var(--radius-xl); background: var(--m); color: var(--m-on); }
+.otg-hero--spotlight::before, .otg-hero--spotlight::after { content: ""; position: absolute; border-radius: 50%; background: var(--m-on); opacity: 0.12; }
+.otg-hero--spotlight::before { width: 220px; height: 220px; right: -70px; top: -90px; }
+.otg-hero--spotlight::after { width: 96px; height: 96px; right: 70px; bottom: -40px; opacity: 0.08; }
+.otg-hero--spotlight .otg-eyebrow, .otg-hero--spotlight .otg-hero-sub { color: var(--m-on); }
+.otg-hero--spotlight .otg-hero-sub { opacity: 0.88; }
+.otg-hero--spotlight .otg-hero-title { font-size: 30px; line-height: 34px; font-weight: 700; letter-spacing: -0.015em; }
+.otg-hero--split { grid-template-columns: auto 1fr; align-items: center; padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.otg-hero-glyph { display: grid; place-items: center; min-width: 84px; height: 84px; padding: 0 var(--space-3); border-radius: var(--radius-lg); background: var(--m-soft); color: var(--m-text); font-family: var(--font-display); font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.otg-hero--split .otg-hero-title { font-size: 26px; line-height: 31px; font-weight: 700; }
+.otg-hero--numeral { padding: var(--space-2) 0; }
+.otg-hero-num { font-family: var(--font-display); font-size: 104px; line-height: 0.9; font-weight: 800; letter-spacing: -0.05em; color: var(--m-text); }
+.otg-hero--numeral .otg-hero-title { font-size: 28px; line-height: 33px; font-weight: 700; }
+.otg-hero-cap { margin: var(--space-1) 0 0; font-size: 13px; line-height: 19px; color: var(--ink-muted); }
+.otg-hero--question { padding: var(--space-5) var(--space-4) var(--space-4); }
+.otg-hero-q { position: absolute; right: -6px; top: -36px; font-family: var(--font-display); font-size: 220px; line-height: 1; font-weight: 800; color: var(--m-soft); pointer-events: none; }
+.otg-hero--question .otg-hero-title { font-size: 44px; line-height: 46px; font-weight: 750; letter-spacing: -0.02em; max-width: 14ch; }
+
+
+/* Big idea */
+.otg-idea { position: relative; display: grid; gap: var(--space-2); }
+.otg-idea-text { margin: 0; font-family: var(--font-display); font-size: 24px; line-height: 30px; font-weight: 650; letter-spacing: -0.01em; text-wrap: balance; }
+.otg-idea--banner { padding: var(--space-5); border-radius: var(--radius-lg); background: var(--m-soft); }
+.otg-idea--quote { padding: var(--space-3) 0 var(--space-3) var(--space-7); }
+.otg-idea--quote .otg-idea-text { font-size: 27px; line-height: 33px; }
+.otg-idea-mark { position: absolute; left: 0; top: -14px; font-family: var(--font-display); font-size: 96px; line-height: 1; font-weight: 800; color: var(--m-text); }
+.otg-idea--sticky { justify-self: start; max-width: 420px; padding: var(--space-6) var(--space-5) var(--space-5); background: var(--sun-soft); color: var(--ink); transform: rotate(-1.2deg); box-shadow: var(--shadow-lift); border-radius: 4px 4px var(--radius-md) 4px; }
+.otg-idea--sticky .otg-eyebrow { color: var(--sun-ink); }
+.otg-idea--sticky::before { content: ""; position: absolute; top: -10px; left: 50%; width: 84px; height: 22px; margin-left: -42px; background: var(--m); opacity: 0.35; transform: rotate(2deg); }
+
+/* Quick answer */
+.otg-quick { display: grid; gap: var(--space-2); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.otg-quick p { margin: 0; font-size: 16px; line-height: 25px; }
+.otg-caret { display: inline-block; width: 8px; height: 17px; margin-left: 3px; vertical-align: -3px; border-radius: 2px; background: var(--m); animation: otg-blink 1s steps(2) infinite; }
+@keyframes otg-blink { 50% { opacity: 0; } }
+
+/* Flow */
+.otg-flow-list { list-style: none; margin: 0; padding: 0; }
+.otg-flow-body strong { display: block; font-size: 15px; font-weight: 700; }
+.otg-flow-body p, .otg-cycle-list p { margin: 2px 0 0; color: var(--ink-muted); }
+.otg-flow--rail .otg-flow-list { display: grid; gap: var(--space-4); }
+.otg-flow--rail .otg-flow-step { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: var(--space-3); }
+.otg-flow--rail .otg-flow-step:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 32px; bottom: -14px; width: 2px; border-radius: 2px; background: var(--m-soft); }
+.otg-flow--snake .otg-flow-list { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.otg-flow--snake .otg-flow-step { position: relative; flex: 1 1 150px; display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); }
+.otg-flow--snake .otg-flow-arrow { position: absolute; right: -15px; top: 20px; z-index: 1; color: var(--m-text); background: var(--paper); border-radius: 50%; }
+.otg-cycle { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; gap: var(--space-5); align-items: center; }
+.otg-cycle-ring { width: 100%; max-width: 100%; }
+.otg-cycle-track { fill: none; stroke: var(--m-soft); stroke-width: 3; }
+.otg-cycle-arc { fill: none; stroke: var(--m); stroke-width: 3; stroke-linecap: round; }
+.otg-cycle-node { fill: var(--m); }
+.otg-cycle-num { fill: var(--m-on); font-size: 7.5px; font-weight: 800; font-family: var(--font-sans); }
+.otg-cycle-center { fill: var(--m-text); font-size: 8px; font-weight: 750; font-family: var(--font-display); }
+.otg-cycle-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.otg-cycle-list li { display: grid; grid-template-columns: 28px 1fr; gap: var(--space-3); }
+
+
+/* Worked example */
+.otg-worked { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.otg-worked-problem { margin: 0; font-size: 17px; line-height: 25px; font-weight: 650; }
+.otg-worked-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.otg-worked-steps li { display: grid; grid-template-columns: 28px 1fr; gap: var(--space-3); }
+.otg-worked-steps p { margin: 3px 0 var(--space-1); }
+.otg-worked-steps li.is-hidden .otg-num { background: var(--surface-sunk); color: var(--ink-muted); }
+.otg-worked-try { color: var(--ink-muted); font-style: italic; }
+.otg-worked-work { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); background: var(--surface-sunk); font-family: var(--font-mono); font-size: 13px; line-height: 20px; overflow-x: auto; }
+.otg-worked-answer { display: flex; gap: var(--space-2); align-items: center; margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); font-weight: 700; color: var(--ink); }
+.otg-worked-answer .otg-icon { color: var(--m-text); }
+
+/* Compare */
+.otg-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); position: relative; }
+.otg-compare-side { min-width: 0; padding: var(--space-4); border-radius: var(--radius-md); }
+.otg-compare-side h4 { margin: 0 0 var(--space-2); font-size: 16px; line-height: 22px; font-weight: 750; }
+.otg-compare-side ul { margin: 0; padding-left: 18px; display: grid; gap: var(--space-1); }
+.otg-compare-side.is-a { background: var(--m-soft); }
+.otg-compare-side.is-a h4 { color: var(--m-text); }
+.otg-compare-side.is-b { background: var(--graphite-soft); }
+.otg-vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: var(--paper); border: 4px solid var(--paper); font-family: var(--font-display); font-weight: 800; font-size: 15px; z-index: 1; }
+.otg-compare-verdict { display: flex; gap: var(--space-2); align-items: flex-start; margin: var(--space-3) 0 0; font-weight: 600; }
+.otg-compare-verdict .otg-icon { margin-top: 3px; color: var(--m-text); }
+.otg-table-wrap { overflow-x: auto; }
+.otg-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 20px; }
+.otg-table th, .otg-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.otg-table thead th { font-size: 13px; font-weight: 750; }
+.otg-table thead th.is-a { color: var(--m-text); }
+.otg-table tbody th { font-weight: 650; color: var(--ink-muted); white-space: nowrap; }
+
+
+/* Analogy */
+.otg-analogy { display: grid; gap: var(--space-4); }
+.otg-analogy-head { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); font-family: var(--font-display); font-size: 24px; line-height: 30px; font-weight: 750; }
+.otg-analogy-a { color: var(--m-text); }
+.otg-analogy-is { font-family: var(--font-sans); font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+.otg-analogy-map { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.otg-analogy-map li { display: grid; grid-template-columns: 1fr 40px 1fr; align-items: center; }
+.otg-pill { padding: 8px 12px; border-radius: var(--radius-md); font-size: 14px; line-height: 19px; font-weight: 600; }
+.otg-pill.is-a { background: var(--m-soft); }
+.otg-pill.is-b { background: var(--surface); border: 1px solid var(--line); }
+.otg-analogy-link { height: 2px; background: repeating-linear-gradient(90deg, var(--ink-faint) 0 4px, transparent 4px 8px); }
+.otg-analogy-breaks { margin: 0; font-size: 14px; color: var(--ink-muted); }
+.otg-analogy-breaks strong { color: var(--ink); }
+
+/* Concept map */
+.otg-map-field { position: relative; aspect-ratio: 4 / 3; max-width: 100%; }
+.otg-map-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.otg-map-lines line { stroke: var(--m); stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.6; }
+.otg-map-center, .otg-map-node { position: absolute; transform: translate(-50%, -50%); text-align: center; }
+.otg-map-center { left: 50%; top: 50%; width: max-content; padding: 12px 16px; border-radius: var(--radius-pill); background: var(--m); color: var(--m-on); font-family: var(--font-display); font-weight: 750; font-size: 16px; line-height: 20px; max-width: 40%; }
+.otg-map-node { display: grid; gap: 2px; width: max-content; max-width: 30%; padding: 8px 10px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lift); }
+.otg-map-node strong { font-size: 13.5px; line-height: 18px; }
+.otg-map-node span { font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+
+
+/* Layers */
+.otg-layers-stack { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; border-radius: var(--radius-lg); overflow: hidden; }
+.otg-layers-stack li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: color-mix(in srgb, var(--m) var(--depth), var(--surface)); color: var(--ink); }
+.otg-layers-stack li.is-deep { color: var(--m-on); }
+.otg-layers-stack strong { font-weight: 750; }
+.otg-layers-stack p { margin: 2px 0 0; font-size: 13.5px; line-height: 19px; opacity: 0.9; }
+.otg-layers-value { flex: none; font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
+
+/* Timeline */
+.otg-timeline-list { list-style: none; margin: 0; padding: 0; }
+.otg-when { display: inline-block; font-size: 12px; line-height: 16px; font-weight: 750; letter-spacing: 0.04em; color: var(--m-text); font-variant-numeric: tabular-nums; }
+.otg-timeline-list strong { display: block; font-weight: 700; }
+.otg-timeline-list p { margin: 2px 0 0; color: var(--ink-muted); font-size: 14px; line-height: 21px; }
+.otg-timeline--vertical .otg-timeline-list { display: grid; gap: var(--space-4); padding-left: 22px; border-left: 2px solid var(--m-soft); margin-left: 6px; }
+.otg-timeline--vertical li { position: relative; }
+.otg-timeline--vertical li::before { content: ""; position: absolute; left: -30px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: var(--m); border: 3px solid var(--paper); }
+.otg-timeline--track .otg-timeline-list { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 220px); gap: var(--space-3); overflow-x: auto; padding: 18px 2px var(--space-2); scroll-snap-type: x mandatory; background: linear-gradient(var(--m), var(--m)) 0 7px / 100% 2px no-repeat; }
+.otg-timeline--track li { position: relative; scroll-snap-align: start; padding-top: var(--space-3); }
+.otg-timeline--track li::before { content: ""; position: absolute; left: 0; top: -16px; width: 12px; height: 12px; border-radius: 50%; background: var(--m); border: 3px solid var(--paper); }
+
+/* Stats */
+.otg-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-3); }
+.otg-stat { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.otg-stat-value { font-family: var(--font-display); font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.03em; color: var(--m-text); font-variant-numeric: tabular-nums; }
+.otg-stat-label { font-weight: 600; font-size: 14px; line-height: 20px; }
+.otg-stat-note { font-size: 12.5px; line-height: 17px; color: var(--ink-muted); }
+.otg-stats--tiles .otg-stat { padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--line); }
+.otg-stats--ribbon { gap: 0; padding: var(--space-5) var(--space-3); border-radius: var(--radius-xl); background: var(--m); color: var(--m-on); }
+.otg-stats--ribbon .otg-stat { padding: 0 var(--space-4); }
+.otg-stats--ribbon .otg-stat + .otg-stat { border-left: 1px solid color-mix(in srgb, var(--m-on) 30%, transparent); }
+.otg-stats--ribbon .otg-stat-value, .otg-stats--ribbon .otg-stat-note { color: var(--m-on); }
+.otg-stats--rings .otg-stat { position: relative; justify-items: center; text-align: center; }
+.otg-ring { width: 120px; height: 120px; }
+.otg-ring-track { fill: none; stroke: var(--line); stroke-width: 9; }
+.otg-ring-fill { fill: none; stroke: var(--m); stroke-width: 9; stroke-linecap: round; }
+.otg-stats--rings .otg-stat-value { position: absolute; top: 38px; font-size: 30px; line-height: 44px; }
+
+/* Scale */
+.otg-scale-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.otg-scale-list li { display: grid; grid-template-columns: minmax(90px, 30%) 1fr auto; gap: var(--space-3); align-items: center; }
+.otg-scale-label { font-size: 14px; font-weight: 600; }
+.otg-scale-track { height: 12px; border-radius: var(--radius-pill); background: var(--surface-sunk); overflow: hidden; }
+.otg-scale-bar { display: block; height: 100%; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--m) 55%, var(--surface)); }
+.otg-scale-list li.is-hl .otg-scale-bar { background: var(--m); }
+.otg-scale-list li.is-hl .otg-scale-label { color: var(--m-text); font-weight: 750; }
+.otg-scale-value { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.otg-scale-note { margin: var(--space-3) 0 0; font-size: 12.5px; color: var(--ink-muted); }
+
+/* Explorable */
+.otg-explore { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--m-soft); }
+.otg-explore .otg-title { margin: 0; }
+.otg-explore-readout { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
+.otg-explore-readout label { font-weight: 650; }
+.otg-explore output { font-family: var(--font-display); font-size: 40px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em; color: var(--m-text); font-variant-numeric: tabular-nums; }
+.otg-explore output small { font-family: var(--font-mono); font-size: 13px; font-weight: 500; margin-left: 4px; letter-spacing: 0; }
+.otg-explore input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: var(--radius-pill); background: linear-gradient(var(--m), var(--m)) 0 / var(--pct) 100% no-repeat, var(--surface); outline-offset: 4px; }
+.otg-explore input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); border: 3px solid var(--m); box-shadow: var(--shadow-lift); cursor: grab; }
+.otg-explore input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 3px solid var(--m); cursor: grab; }
+.otg-explore-out { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface); }
+.otg-explore-out strong { display: block; }
+.otg-explore-out p { margin: 2px 0 0; color: var(--ink-muted); }
+
+/* Quiz */
+.otg-quiz { display: grid; gap: var(--space-3); }
+.otg-quiz-q { margin: 0; font-size: 18px; line-height: 26px; font-weight: 700; text-wrap: pretty; }
+.otg-quiz-opts { display: grid; gap: var(--space-2); }
+.otg-opt { display: flex; align-items: center; gap: var(--space-3); width: 100%; text-align: left; font: inherit; font-weight: 600; padding: 12px 14px; border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease; }
+.otg-opt:hover:not(:disabled) { border-color: var(--m); }
+.otg-opt:active:not(:disabled) { transform: scale(0.99); }
+.otg-opt:disabled { cursor: default; opacity: 0.55; }
+.otg-opt-key { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--surface-sunk); font-size: 13px; font-weight: 800; }
+.otg-opt.is-right { border-color: var(--correct); background: var(--forest-soft); opacity: 1; }
+.otg-opt.is-right .otg-opt-key { background: var(--correct); color: var(--on-forest); }
+.otg-opt.is-wrong { border-color: var(--danger); background: var(--danger-soft); opacity: 1; animation: otg-shake 0.3s ease; }
+.otg-opt.is-wrong .otg-opt-key { background: var(--danger); color: var(--surface); }
+.otg-quiz--tiles .otg-quiz-opts { grid-template-columns: 1fr 1fr; }
+.otg-quiz--tiles .otg-opt { flex-direction: column; align-items: flex-start; min-height: 96px; padding: var(--space-4); border-radius: var(--radius-lg); }
+.otg-quiz--truefalse .otg-quiz-opts { grid-template-columns: 1fr 1fr; }
+.otg-quiz--truefalse .otg-opt { justify-content: center; font-size: 17px; padding: var(--space-4); border-radius: var(--radius-pill); }
+.otg-quiz--cloze .otg-quiz-q { font-family: var(--font-display); font-size: 24px; line-height: 34px; font-weight: 650; }
+.otg-quiz--cloze .otg-quiz-opts { display: flex; flex-wrap: wrap; }
+.otg-quiz--cloze .otg-opt { width: auto; border-radius: var(--radius-pill); padding: 8px 16px; }
+.otg-blank { display: inline-block; min-width: 4ch; padding: 0 6px; border-bottom: 3px solid var(--m); color: var(--m-text); }
+.otg-blank.is-filled { background: var(--m-soft); border-radius: 6px 6px 0 0; }
+.otg-fb { display: flex; gap: var(--space-2); align-items: flex-start; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: 14.5px; line-height: 21px; }
+.otg-fb .otg-icon { margin-top: 2px; }
+.otg-fb.is-right { background: var(--forest-soft); }
+.otg-fb.is-right .otg-icon { color: var(--correct); }
+.otg-fb.is-hint { background: var(--sun-soft); }
+.otg-fb.is-hint .otg-icon { color: var(--sun-ink); }
+.otg-fb.is-wrong { background: var(--danger-soft); }
+.otg-fb.is-wrong .otg-icon { color: var(--danger); }
+@keyframes otg-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+/* Recall */
+.otg-recall { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); border: 1.5px dashed var(--line-strong); }
+.otg-recall-q { font-size: 17px; line-height: 25px; font-weight: 700; }
+.otg-recall textarea { font: inherit; width: 100%; box-sizing: border-box; padding: var(--space-3); border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); resize: vertical; }
+.otg-recall .otg-btn { justify-self: start; }
+.otg-recall-model { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); }
+.otg-recall-model ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: var(--space-1); }
+.otg-recall-model li { display: flex; gap: var(--space-2); align-items: flex-start; }
+.otg-recall-model li .otg-icon { margin-top: 4px; color: var(--ink-muted); }
+.otg-recall-model li.is-hit .otg-icon { color: var(--correct); }
+
+/* Flip cards */
+.otg-flips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }
+.otg-flip { font: inherit; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; perspective: 800px; min-height: 132px; text-align: left; }
+.otg-flip-inner { position: relative; display: block; height: 100%; min-height: 132px; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.otg-flip.is-flipped .otg-flip-inner { transform: rotateY(180deg); }
+.otg-flip-face { position: absolute; inset: 0; display: grid; align-content: space-between; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-lg); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.otg-flip-face.is-front { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lift); font-family: var(--font-display); font-weight: 700; font-size: 18px; line-height: 23px; }
+.otg-flip-face.is-front small { font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--m-text); }
+.otg-flip-face.is-back { background: var(--m); color: var(--m-on); transform: rotateY(180deg); font-size: 14px; line-height: 20px; font-weight: 500; align-content: center; }
+
+/* Myth vs fact */
+.otg-myth-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.otg-myth-list li { display: grid; gap: var(--space-2); }
+.otg-myth-list p { margin: 0; display: grid; grid-template-columns: 72px 1fr; gap: var(--space-3); align-items: start; }
+.otg-myth-m { color: var(--ink-muted); text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 1.5px; }
+.otg-myth-f { font-weight: 600; }
+.otg-tag { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 2px 8px; border-radius: var(--radius-pill); font-size: 12px; line-height: 18px; font-weight: 750; text-decoration: none; }
+.otg-myth-m .otg-tag { text-decoration: none; display: inline-flex; }
+.otg-tag.is-myth { background: var(--danger-soft); color: var(--danger); }
+.otg-tag.is-fact { background: var(--forest-soft); color: var(--correct); }
+
+/* Key terms */
+.otg-terms { display: grid; gap: var(--space-3); }
+.otg-terms dl { margin: 0; display: grid; grid-template-columns: minmax(96px, max-content) 1fr; }
+.otg-terms dt, .otg-terms dd { margin: 0; padding: 10px 0; border-top: 1px solid var(--line); }
+.otg-terms dt { font-weight: 750; padding-right: var(--space-4); color: var(--m-text); }
+.otg-terms dd { color: var(--ink-muted); }
+.otg-terms-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.otg-terms-def { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); }
+.otg-terms-def.is-empty { background: transparent; padding: 0; color: var(--ink-muted); font-size: 13.5px; }
+
+/* Takeaways */
+.otg-take { display: grid; gap: var(--space-3); }
+.otg-take ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.otg-take--checklist li { display: flex; gap: var(--space-2); align-items: flex-start; font-weight: 550; }
+.otg-take--checklist li .otg-icon { margin-top: 4px; color: var(--m-text); }
+.otg-take--cards ul { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--space-3); }
+.otg-take--cards li { padding: var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); font-weight: 650; line-height: 21px; }
+
+/* Next steps */
+.otg-next { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.otg-next-item { display: inline-flex; align-items: center; gap: var(--space-2); font: inherit; font-size: 14px; font-weight: 650; padding: 10px 14px 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; transition: border-color 0.15s ease, gap 0.15s ease; }
+.otg-next-item .otg-icon { color: var(--m-text); }
+.otg-next-item:hover { border-color: var(--m); gap: 12px; }
+
+/* Activity */
+.otg-act { border-radius: var(--radius-md); }
+.otg-act summary { display: flex; align-items: center; gap: var(--space-2); padding: 6px 2px; cursor: pointer; list-style: none; color: var(--ink-muted); font-size: 14px; font-weight: 600; border-radius: var(--radius-sm); }
+.otg-act summary::-webkit-details-marker { display: none; }
+.otg-act-label { color: var(--ink); }
+.otg-act-meta { color: var(--ink-muted); font-weight: 500; }
+.otg-act-chev { margin-left: auto; transition: transform 0.2s ease; }
+.otg-act[open] .otg-act-chev { transform: rotate(180deg); }
+.otg-act-stack { display: inline-flex; }
+.otg-act-stack .otg-mono { width: 18px; height: 18px; font-size: 10px; border: 2px solid var(--paper); margin-left: -5px; }
+.otg-act-stack .otg-mono:first-child { margin-left: 0; }
+.otg-act.is-live .otg-act-label { background: linear-gradient(90deg, var(--ink-muted) 0%, var(--ink) 40%, var(--ink-muted) 80%) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: otg-shimmer 1.6s linear infinite; }
+@keyframes otg-shimmer { to { background-position: -200% 0; } }
+.otg-act-body { padding: var(--space-2) 0 var(--space-2) 26px; }
+.otg-act-body ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.otg-act-body li { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: var(--space-2); align-items: center; font-size: 13.5px; }
+.otg-act-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.otg-act-host { color: var(--ink-muted); font-size: 12.5px; }
+.otg-act-think { margin: 0; color: var(--ink-muted); font-size: 13.5px; line-height: 21px; white-space: pre-wrap; }
+.otg-mono { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: var(--m); color: var(--m-on); font-size: 11px; font-weight: 800; flex: none; }
+
+/* Sources */
+.otg-sources { display: grid; gap: var(--space-3); }
+.otg-sources-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.otg-source { display: grid; grid-template-columns: 24px 1fr; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+.otg-source:hover { border-color: var(--m); box-shadow: var(--shadow-lift); }
+.otg-source-n { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--m-text); font-variant-numeric: tabular-nums; }
+.otg-source-body { display: grid; gap: 2px; min-width: 0; }
+.otg-source-site { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-muted); }
+.otg-source-body strong { font-size: 15px; line-height: 21px; }
+.otg-source-snip { font-size: 13.5px; line-height: 20px; color: var(--ink-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .otg-flip-inner, .otg-btn, .otg-opt, .otg-act-chev, .otg-next-item { transition: none; }
+  .otg-opt.is-wrong, .otg-caret, .otg-act.is-live .otg-act-label { animation: none; }
+  .otg-act.is-live .otg-act-label { color: var(--ink); background: none; }
+}
+
+/* Predict */
+.otg-predict { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.otg-predict-q { margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; text-wrap: balance; }
+.otg-predict-opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.otg-predict-reveal { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); }
+.otg-predict-note { margin: 0; font-size: 13px; color: var(--ink-muted); }
+.otg-phone { display: grid; gap: var(--space-6); align-content: start; padding: var(--space-5) var(--space-4); border-radius: 36px; background: var(--paper); border: 1px solid var(--line-strong); min-width: 0; }
+.otg-phone-label { font-size: 12px; font-weight: 700; color: var(--ink-muted); letter-spacing: 0.04em; }
+
+/* Components adapt to the width they are given (container queries), not the screen. */
+.otg-hero, .otg-flow--cycle, .otg-compare, .otg-map, .otg-quiz, .otg-scale { container-type: inline-size; }
+@container (max-width: 400px) {
+  .otg-hero--question .otg-hero-title { font-size: 36px; line-height: 39px; }
+  .otg-hero-num { font-size: 84px; }
+  .otg-hero--split { grid-template-columns: 1fr; }
+  .otg-hero--spotlight .otg-hero-title { font-size: 26px; line-height: 30px; }
+  .otg-compare--split .otg-compare-grid { grid-template-columns: 1fr; }
+  .otg-scale-list li { grid-template-columns: 1fr auto; }
+  .otg-scale-track { grid-column: 1 / -1; grid-row: 2; }
+}
+@container (max-width: 480px) {
+  .otg-cycle { grid-template-columns: 1fr; }
+  .otg-cycle-ring { max-width: 200px; justify-self: center; }
+  .otg-map-field { aspect-ratio: 1 / 1; }
+  .otg-map-node span { display: none; }
+}
+@container (max-width: 320px) { .otg-quiz--tiles .otg-quiz-opts { grid-template-columns: 1fr; } }
+.otg-phone > * { min-width: 0; }
+.otg-act-label, .otg-act-meta { white-space: nowrap; }
+.otg-act-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+/* Race chart */
+.otg-race { display: grid; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.otg-race-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.otg-race-year { font-family: var(--font-display); font-size: 40px; line-height: 1; font-weight: 800; letter-spacing: -0.03em; color: var(--m-text); font-variant-numeric: tabular-nums; }
+.otg-race-board { position: relative; }
+.otg-race-row { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: center; gap: var(--space-2); transition: transform 0.9s cubic-bezier(.3,.7,.3,1), opacity 0.5s; }
+.otg-race-bar { position: relative; min-width: 0; height: 100%; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; display: flex; align-items: center; padding: 0 var(--space-2); transition: width 0.9s cubic-bezier(.3,.7,.3,1); overflow: hidden; flex: none; max-width: calc(100% - 64px); }
+.otg-race-name { font-size: 12.5px; font-weight: 750; color: #fff; white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+:root[data-theme="dark"] .otg-race-name { color: #0b110e; text-shadow: none; }
+.otg-race-val { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-muted); white-space: nowrap; }
+.otg-race-val small { font-weight: 500; }
+.otg-race-ctl { display: flex; align-items: center; gap: var(--space-3); }
+.otg-race-ctl input[type=range] { flex: 1; accent-color: var(--m); }
+.otg-race-btn { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--m); color: var(--m-on); flex: none; }
+.otg-race-src { margin: 0; font-size: 12px; color: var(--ink-faint); }
+@media (prefers-reduced-motion: reduce) { .otg-race-row, .otg-race-bar { transition: none; } }
+
+/* ---------- Page title (pages 2+ of a course lesson) ---------- */
+.otg-pagetitle { display: grid; gap: var(--space-1); padding: var(--space-2) 0 var(--space-1); border-bottom: 3px solid var(--m); }
+.otg-pagetitle h2 { margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: 28px; line-height: 33px; font-weight: 750; letter-spacing: -0.015em; text-wrap: balance; }
+
+/* ---------- Typed and photo answers ---------- */
+.otg-open, .otg-photo { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1.5px solid var(--line-strong); }
+.otg-open-q { font-size: 17px; line-height: 25px; font-weight: 700; margin: 0; }
+.otg-open textarea { font: inherit; font-size: 16px; width: 100%; box-sizing: border-box; padding: var(--space-3); border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--paper); color: var(--ink); resize: vertical; }
+.otg-open textarea:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+.otg-open-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.otg-btn:disabled { opacity: 0.5; cursor: default; }
+.otg-err { margin: 0; color: var(--danger); font-size: 14px; font-weight: 600; }
+.otg-seen { margin: 6px 0 0; color: var(--ink-muted); font-size: 13.5px; }
+.otg-model { border-radius: var(--radius-md); background: var(--m-soft); padding: var(--space-3) var(--space-4); }
+.otg-model summary { cursor: pointer; font-weight: 700; color: var(--m-text); }
+.otg-model p { margin: var(--space-2) 0 0; }
+.otg-photo-hint { margin: 0; color: var(--ink-muted); font-size: 14px; }
+.otg-photo-drop { display: grid; justify-items: center; gap: 6px; padding: var(--space-5); border-radius: var(--radius-lg); border: 2px dashed var(--line-strong); background: var(--paper); color: var(--ink-muted); font: inherit; cursor: pointer; }
+.otg-photo-drop strong { color: var(--ink); }
+.otg-photo-drop:hover { border-color: var(--m); color: var(--m-text); }
+.otg-photo-preview { display: flex; gap: var(--space-3); align-items: flex-end; flex-wrap: wrap; }
+.otg-photo-preview img { max-width: min(260px, 100%); max-height: 260px; border-radius: var(--radius-md); border: 1px solid var(--line); object-fit: contain; background: var(--paper); }
+.otg-photo-check { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--m-soft); display: grid; gap: var(--space-2); }
+.otg-photo-check ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.otg-photo-check li { display: flex; gap: 8px; align-items: flex-start; }
+.otg-photo-check li label { display: flex; gap: 8px; align-items: flex-start; }
+.otg-photo-check .otg-btn { justify-self: start; }
+
+/* ---------- Simulation ---------- */
+.otg-sim { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--m-soft); }
+.otg-sim .otg-title { margin: 0; }
+.otg-sim-intro { margin: 0; color: var(--ink-muted); }
+.otg-sim-grid { display: grid; gap: var(--space-4); }
+@container (min-width: 560px) { .otg-sim-grid { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+.otg-sim-inputs { display: grid; gap: var(--space-4); }
+.otg-sim-in { display: grid; gap: 6px; }
+.otg-sim-in-top { display: flex; justify-content: space-between; gap: var(--space-2); font-weight: 650; font-size: 14.5px; }
+.otg-sim-in output { font-variant-numeric: tabular-nums; color: var(--m-text); font-weight: 800; }
+.otg-sim input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: var(--radius-pill); background: linear-gradient(var(--m), var(--m)) 0 / var(--pct) 100% no-repeat, var(--surface); }
+.otg-sim input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); border: 3px solid var(--m); box-shadow: var(--shadow-lift); cursor: grab; }
+.otg-sim input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 3px solid var(--m); cursor: grab; }
+.otg-sim input[type="range"]:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.otg-sim-outs { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+.otg-sim-out { display: grid; gap: 2px; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface); }
+.otg-sim-out small { color: var(--ink-muted); font-size: 12.5px; font-weight: 650; }
+.otg-sim-out strong { font-family: var(--font-display); font-size: 26px; line-height: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--m-text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.otg-sim-chart { margin: 0; padding: var(--space-3); border-radius: var(--radius-md); background: var(--surface); }
+.otg-sim-chart svg { display: block; width: 100%; height: 150px; overflow: visible; }
+.otg-sim-area { fill: var(--m); opacity: 0.12; }
+.otg-sim-line { fill: none; stroke: var(--m); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.otg-sim-dot { fill: var(--surface); stroke: var(--m); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.otg-sim-chart figcaption { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; color: var(--ink-muted); font-size: 12.5px; }
+.otg-sim-insight { background: var(--surface); }
+.lesson { container-type: inline-size; }
+
+/* ---------- Games ---------- */
+.otg-game { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1.5px solid var(--line-strong); }
+.otg-game .otg-title { margin: 0; }
+.otg-game-help { margin: 0; color: var(--ink-muted); font-size: 14px; }
+.otg-sort-pool { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.otg-sort-pool .otg-chip { cursor: pointer; }
+.otg-sort-buckets { display: grid; gap: var(--space-2); }
+.otg-bucket { display: grid; align-content: start; gap: var(--space-2); min-height: 110px; padding: var(--space-3); border-radius: var(--radius-md); background: var(--m-soft); border: 2px dashed transparent; cursor: default; }
+.otg-bucket.is-target { border-color: var(--m); cursor: pointer; }
+.otg-bucket strong { font-size: 13px; letter-spacing: 0.02em; color: var(--m-text); }
+.otg-bucket-items { display: grid; gap: 6px; }
+.otg-placed { display: flex; gap: 4px; align-items: center; font: inherit; font-size: 13.5px; font-weight: 600; text-align: left; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.otg-placed.is-right { border-color: var(--correct); color: var(--correct); }
+.otg-placed.is-wrong { border-color: var(--danger); color: var(--danger); background: var(--danger-soft); }
+.otg-order-seq { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.otg-order-seq li { display: flex; gap: var(--space-3); align-items: center; min-height: 46px; padding: 6px 10px; border-radius: var(--radius-md); background: var(--paper); border: 1.5px solid var(--line); }
+.otg-order-seq li.is-empty { border-style: dashed; }
+.otg-order-seq li.is-right { border-color: var(--correct); background: var(--forest-soft); }
+.otg-order-seq li.is-wrong { border-color: var(--danger); background: var(--danger-soft); }
+.otg-order-seq li button { flex: 1; display: flex; justify-content: space-between; gap: 8px; align-items: center; font: inherit; font-weight: 600; text-align: left; background: none; border: 0; color: var(--ink); cursor: pointer; padding: 4px 0; }
+.otg-order-slot { color: var(--ink-faint); font-size: 13.5px; }
+.otg-match-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.otg-match-stats { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; font-weight: 700; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.otg-match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+.otg-match-cols > div { display: grid; gap: var(--space-2); align-content: start; }
+.otg-match-card { font: inherit; font-size: 14px; font-weight: 650; text-align: left; min-height: 52px; padding: 10px 12px; border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; transition: transform 0.12s, border-color 0.12s, background 0.12s; }
+.otg-match-card.is-right-col { background: var(--paper); }
+.otg-match-card.is-selected { border-color: var(--m); background: var(--m-soft); }
+.otg-match-card.is-done { border-color: var(--correct); background: var(--forest-soft); color: var(--correct); cursor: default; opacity: 0.8; }
+.otg-match-card.is-shake { animation: otg-shake 0.3s ease; border-color: var(--danger); }
+.otg-link { font: inherit; font-weight: 700; color: var(--m-text); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+
+/* ---------- Scenario ---------- */
+.otg-scn { display: grid; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lift); }
+.otg-scn .otg-title { margin: 0; }
+.otg-scn-top { display: flex; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; align-items: center; }
+.otg-scn-role { font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); background: var(--m-soft); color: var(--m-text); }
+.otg-scn-progress { display: flex; gap: 6px; }
+.otg-scn-progress i { flex: 1; height: 5px; border-radius: 9px; background: var(--surface-sunk); }
+.otg-scn-progress i.is-on { background: var(--m-soft); box-shadow: inset 0 0 0 1.5px var(--m); }
+.otg-scn-progress i.is-done { background: var(--m); }
+.otg-scn-sit { margin: 0; font-size: 16.5px; line-height: 25px; padding: var(--space-3) var(--space-4); border-left: 4px solid var(--m); background: var(--paper); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.otg-scn-choices { display: grid; gap: var(--space-2); }
+.otg-opt.is-best { border-color: var(--correct); background: var(--forest-soft); opacity: 1; }
+.otg-opt.is-ok { border-color: var(--sun); background: var(--sun-soft); opacity: 1; }
+.otg-opt.is-poor { border-color: var(--danger); background: var(--danger-soft); opacity: 1; }
+.otg-scn-outcome { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: 15px; line-height: 22px; }
+.otg-scn-outcome.is-best { background: var(--forest-soft); }
+.otg-scn-outcome.is-ok { background: var(--sun-soft); }
+.otg-scn-outcome.is-poor { background: var(--danger-soft); }
+.otg-scn-end { display: grid; gap: var(--space-3); justify-items: start; }
+.otg-scn-score { display: inline-flex; gap: 8px; align-items: center; font-family: var(--font-display); font-size: 34px; font-weight: 800; color: var(--m-text); }
+.otg-scn-end p { margin: 0; font-size: 16px; line-height: 24px; }
+
+/* ---------- Quiz cards (flip + self-rating) ---------- */
+.otg-flips { display: grid; gap: var(--space-3); }
+.otg-flips .otg-title { margin: 0; }
+.otg-flipwrap { display: grid; gap: 6px; align-content: start; }
+.otg-flip.is-known .otg-flip-face.is-back { box-shadow: inset 0 0 0 3px var(--correct); }
+.otg-flip.is-unknown .otg-flip-face.is-back { box-shadow: inset 0 0 0 3px var(--sun); }
+.otg-flip-rate { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.otg-flip-rate button { display: inline-flex; gap: 4px; align-items: center; justify-content: center; font: inherit; font-size: 12.5px; font-weight: 700; padding: 6px 8px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-muted); cursor: pointer; }
+.otg-flip-rate button.is-on { background: var(--m); border-color: var(--m); color: var(--m-on); }
+.otg-flip-rate button { white-space: nowrap; padding: 6px 4px; font-size: 12px; }
+.otg-flip-rate button svg { flex: none; }

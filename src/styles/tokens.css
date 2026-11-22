@@ -1,0 +1,64 @@
+/* Learn OTG tokens (from the design system). Light is default; data-theme overrides. */
+:root {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px;
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px; --radius-xl: 32px; --radius-pill: 999px;
+  --dock-h: 132px;
+  color-scheme: light;
+  --paper: #F3F5F1; --surface: #FFFFFF; --surface-sunk: #E9EDE6;
+  --ink: #12201A; --ink-muted: #4F5D56; --ink-faint: #7A867F;
+  --line: #D9E0D8; --line-strong: #B9C4BA;
+  --forest: #0B6E4F; --forest-soft: #DDF0E7; --on-forest: #FFFFFF;
+  --sun: #F2B544; --sun-soft: #FDF0D2; --on-sun: #2A1D00; --sun-ink: #8A5A00;
+  --lagoon: #1A639A; --lagoon-soft: #DCEBF6; --on-lagoon: #FFFFFF;
+  --berry: #B0285C; --berry-soft: #F8E1EA; --on-berry: #FFFFFF;
+  --clay: #A44A24; --clay-soft: #F7E4DA; --on-clay: #FFFFFF;
+  --graphite: #2F3B36; --graphite-soft: #E3E8E4; --on-graphite: #FFFFFF;
+  --danger: #B42318; --danger-soft: #FDE8E5;
+  --focus: var(--lagoon);
+  --shadow-lift: 0 1px 2px rgba(18, 32, 26, 0.06), 0 4px 14px rgba(18, 32, 26, 0.06);
+  --shadow-float: 0 8px 30px rgba(18, 32, 26, 0.16);
+  --scrim: rgba(18, 32, 26, 0.45);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0E1512; --surface: #16201C; --surface-sunk: #0A100D;
+  --ink: #E8EFEA; --ink-muted: #A3B2AA; --ink-faint: #6F7D76;
+  --line: #26332D; --line-strong: #3A4A42;
+  --forest: #4FD1A1; --forest-soft: #0F2E23; --on-forest: #062018;
+  --sun: #F5C565; --sun-soft: #33270D; --on-sun: #2A1D00; --sun-ink: #F5C565;
+  --lagoon: #6CB8EE; --lagoon-soft: #0E2638; --on-lagoon: #04192A;
+  --berry: #F07AA6; --berry-soft: #3A1022; --on-berry: #2A0616;
+  --clay: #EE9A72; --clay-soft: #3A1A0D; --on-clay: #2A0E03;
+  --graphite: #C9D4CE; --graphite-soft: #232E29; --on-graphite: #101814;
+  --danger: #FF8A7A; --danger-soft: #3A1612;
+  --shadow-lift: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+  --shadow-float: 0 8px 30px rgba(0, 0, 0, 0.55);
+  --scrim: rgba(0, 0, 0, 0.6);
+}
+/* Legacy names used by the original stylesheet map onto the tokens. */
+:root,
+:root[data-theme="dark"] {
+  --bg: var(--paper);
+  --panel: var(--surface);
+  --panel-2: color-mix(in srgb, var(--surface) 55%, var(--paper));
+  --ink-2: var(--ink-muted);
+  --ink-3: var(--ink-faint);
+  --line-2: var(--line-strong);
+  --accent: var(--forest);
+  --accent-ink: var(--on-forest);
+  --accent-soft: var(--forest-soft);
+  --accent-ink-soft: var(--forest);
+  --radius: var(--radius-md);
+  --radius-lg: 20px;
+}
+/* Moods: every lesson component reads --m, --m-soft, --m-on, --m-text. */
+.m-forest { --m: var(--forest); --m-soft: var(--forest-soft); --m-on: var(--on-forest); --m-text: var(--forest); }
+.m-sun { --m: var(--sun); --m-soft: var(--sun-soft); --m-on: var(--on-sun); --m-text: var(--sun-ink); }
+.m-lagoon { --m: var(--lagoon); --m-soft: var(--lagoon-soft); --m-on: var(--on-lagoon); --m-text: var(--lagoon); }
+.m-berry { --m: var(--berry); --m-soft: var(--berry-soft); --m-on: var(--on-berry); --m-text: var(--berry); }
+.m-clay { --m: var(--clay); --m-soft: var(--clay-soft); --m-on: var(--on-clay); --m-text: var(--clay); }
+.m-graphite { --m: var(--graphite); --m-soft: var(--graphite-soft); --m-on: var(--on-graphite); --m-text: var(--graphite); }
+:root { --m: var(--forest); --m-soft: var(--forest-soft); --m-on: var(--on-forest); --m-text: var(--forest); --correct: var(--forest); }
