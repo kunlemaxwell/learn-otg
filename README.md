@@ -2,6 +2,10 @@
 
 Learn anything without waiting for someone to make a course. Ask a question and Learn OTG builds a visual lesson right there: steps, charts, tabs, a quick quiz. Or give it a topic, your own files, websites or YouTube videos, and it builds a whole course for you, page by page, as you go.
 
+[![Watch the Learn OTG launch film](docs/learn-otg-launch-poster.jpg)](https://kunlemaxwell.com/works/learn-otg#film)
+
+**[Watch the launch film](https://kunlemaxwell.com/works/learn-otg#film)** (under a minute), or [download it](docs/learn-otg-launch.mp4). New here? Read the [step-by-step user guide](https://be-guided.pages.dev/learn-otg/).
+
 ![A lesson on the canvas](docs/screenshots/desktop-lesson.png)
 
 ## Why I built it
