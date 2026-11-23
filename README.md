@@ -4,7 +4,7 @@ Learn anything without waiting for someone to make a course. Ask a question and 
 
 [![Watch the Learn OTG launch film](docs/learn-otg-launch-poster.jpg)](https://kunlemaxwell.com/works/learn-otg#film)
 
-**[Watch the launch film](https://kunlemaxwell.com/works/learn-otg#film)** (under a minute), or [download it](docs/learn-otg-launch.mp4). New here? Read the [step-by-step user guide](https://be-guided.pages.dev/learn-otg/).
+**[Watch the launch film](https://kunlemaxwell.com/works/learn-otg#film)** (one minute), or [download it](docs/learn-otg-launch.mp4). New here? Read the [step-by-step user guide](https://be-guided.pages.dev/learn-otg/).
 
 ![A lesson on the canvas](docs/screenshots/desktop-lesson.png)
 
